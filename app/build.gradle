@@ -1,13 +1,13 @@
 plugins { id 'com.android.application' }
 android {
-    namespace 'com.rovtech.streetrider'
+    namespace 'com.rovtech.joyride'
     compileSdk 35
     defaultConfig {
-        applicationId 'com.rovtech.streetrider'
+        applicationId 'com.rovtech.kevinsjoyride'
         minSdk 21
         targetSdk 35
-        versionCode 1
-        versionName '1.0'
+        versionCode 2
+        versionName '2.0'
     }
     buildTypes {
         release { minifyEnabled false; signingConfig signingConfigs.debug }
