@@ -16,7 +16,7 @@ public final class Vehicles {
     public static final int HATCH = 0, SUV = 1, TRUCK = 2, BUS = 3, AUTO = 4;
     /** width, height, length in world units */
     public static final float[][] SIZE = {
-            {440, 330, 900}, {480, 410, 1000}, {540, 700, 1700}, {550, 650, 2000}, {360, 390, 620}
+            {380, 300, 900}, {410, 380, 1000}, {440, 620, 1700}, {450, 580, 2000}, {320, 360, 620}
     };
     public static final int[] PAINT = {
             0xFFD62828, 0xFFF2F2F2, 0xFF1C1C1E, 0xFFB0B7BF, 0xFF2B59C3, 0xFF8D99AE, 0xFF7F5539, 0xFF2E7D32, 0xFFF77F00

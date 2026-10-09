@@ -73,7 +73,7 @@ public class Game {
         this.rider = rider;
         cars.clear();
         popups.clear();
-        z = 0; x = 0.5f; speed = 0; lean = 0;
+        z = 0; x = 0.25f; speed = 0; lean = 0;
         crashed = finished = timeUp = false;
         crashT = runTime = 0;
         score = topKmh = combo = comboT = oppTime = 0;
@@ -237,7 +237,8 @@ public class Game {
                 }
             }
             // occasional lane changes among same-direction cars
-            if (!c.oncoming && c.blink <= 0 && c.type <= Vehicles.SUV && rnd.nextFloat() < dt * 0.06f) {
+            if (!c.oncoming && c.blink <= 0 && c.type <= Vehicles.SUV && rnd.nextFloat() < dt * 0.06f
+                    && Math.abs(c.z - pz) > 3000) {
                 float nx = c.x < 0.5f ? 0.75f : 0.25f;
                 boolean free = true;
                 for (Vehicles.Car o : cars) if (o != c && Math.abs(o.x - nx) < 0.3f && Math.abs(o.z - c.z) < 2200) free = false;
@@ -258,10 +259,10 @@ public class Game {
 
     private void checkTraffic(float kmh) {
         double pz = z + Road.PLAYER_D;
-        final float bikeHalfW = 85, bikeHalfL = 200;
+        final float bikeHalfW = 55, bikeHalfL = 180;
         for (Vehicles.Car c : cars) {
             double dz = c.z - pz;
-            float lat = Math.abs(c.x - x) * Road.RW - c.width() / 2 - bikeHalfW;
+            float lat = Math.abs(c.x - x) * Road.RW - c.width() * 0.44f - bikeHalfW;
             if (Math.abs(dz) < c.length() / 2 + bikeHalfL && lat < 0) {
                 crash(c);
                 return;
@@ -269,7 +270,7 @@ public class Game {
             if (!c.passed && dz < -(c.length() / 2)) {
                 c.passed = true;
                 if (!c.oncoming) { overtakes++; score += 10; }
-                if (lat < 230 && kmh > 80) {
+                if (lat < 200 && kmh > 80) {
                     nearMisses++;
                     combo = Math.min(combo + 1, 10);
                     bestCombo = Math.max(bestCombo, (int) combo);
